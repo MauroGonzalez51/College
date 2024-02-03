@@ -73,7 +73,7 @@ T takeInput(const std::string &message) {
 }
 
 template <typename T>
-float processStudents(T& totalStudents, T& aprovedStudents) {
+float processStudents(T& totalStudents, T& aprovedStudents, T& perfectGradeStudentsCount) {
     float accumulative = 0.0f;
 
     for (T i = 0; i < totalStudents; i++) {
@@ -88,6 +88,7 @@ float processStudents(T& totalStudents, T& aprovedStudents) {
 
         if (finalGrade == 5.0f) {
             std::cout << "{ ESTUDIANTE " << i + 1 << " | Calificacion Perfecta }" << std::endl;
+            perfectGradeStudentsCount++;
         }   
         
         if (finalGrade >= 3.0f) {
@@ -114,7 +115,7 @@ int main() {
 
     std::cout << std::endl << "Numero de estudiantes" << std::endl;
 
-    uint8_t aprovedStudents = 0, totalStudents;
+    uint8_t aprovedStudents = 0, totalStudents, perfectGradeStudentsCount = 0;
 
     do {
         uint16_t temp;
@@ -125,9 +126,10 @@ int main() {
             totalStudents = static_cast<uint8_t>(temp);
     } while (totalStudents <= 0);
 
-    calculateGeneralAverage(processStudents(totalStudents, aprovedStudents), totalStudents);
-    std::cout << "Aprobados: " << int(aprovedStudents) << std::endl;
-    std::cout << "Desaprobados: " << totalStudents - aprovedStudents << std::endl;
+    calculateGeneralAverage(processStudents(totalStudents, aprovedStudents, perfectGradeStudentsCount), totalStudents);
+    std::cout << "Aprobados: " << static_cast<int>(aprovedStudents) << std::endl;
+    std::cout << "Desaprobados: " << static_cast<int>(totalStudents - aprovedStudents) << std::endl;
+    std::cout << "Estudiantes con calificacion perfecta: " << static_cast<int>(perfectGradeStudentsCount) << std::endl;
 
     system("PAUSE");
 
