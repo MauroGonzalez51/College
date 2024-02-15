@@ -1,31 +1,44 @@
 #include <iostream>
 #include <vector>
-#include <chrono>
+#include "../include/execution_time.h"
 
 int not_recursive_binary_search(std::vector <int> &, int);
 int actually_recursive_binary_search(std::vector <int> &, int, int, int);
 
-int main(int argc, char **arv) {
+int main(int argc, char **argv) {
+    if (argv[1] == NULL) {
+        std::cout << "Using argv[1]" << std::endl;
+        exit(1);
+    }
+
+    ExecutionTime *execution_time = new ExecutionTime();
+
     std::vector <int> vector = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int random_value_to_search = *argv[1] - '0';
 
-    int random_value_to_search = 19;
-
-    auto start = std::chrono::high_resolution_clock::now();
+    execution_time -> start();
     std::cout << "[ INDEX ] Normal: " << not_recursive_binary_search(vector, random_value_to_search) << std::endl;
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration <double> diff = end - start;
-    std::cout << "[ EXECUTION (s) ]: " << diff.count() << std::endl;
+    execution_time -> end();
+    std::cout << "[ EXECUTION (s) ]: " << execution_time -> getTimeInSeconds() << std::endl;
 
     std::cout << std::endl;
 
-    start = std::chrono::high_resolution_clock::now();
+    execution_time -> start();
     std::cout << "[ INDEX ] Recursive: " << actually_recursive_binary_search(vector, random_value_to_search, 0, int(vector.size() - 1)) << std::endl;
-    end = std::chrono::high_resolution_clock::now();
-    diff = end - start;
-    std::cout << "[ EXECUTION (s) ]: " << diff.count() << std::endl;
+    execution_time -> end();
+    std::cout << "[ EXECUTION (s) ]: " << execution_time -> getTimeInSeconds() <<  std::endl;
 
     return EXIT_SUCCESS;
 }
+
+/**
+ * ! Normal BinarySearch
+ * 
+ * Complexity: O(log n)
+ * 
+ * 
+ * 
+*/
 
 int not_recursive_binary_search(std::vector <int> &vector, int element) {
     int left = 0, right = int(vector.size() - 1);
@@ -47,6 +60,22 @@ int not_recursive_binary_search(std::vector <int> &vector, int element) {
 
     return -1;
 }
+
+/**
+ * ! Recursive BinarySearch
+ * 
+ * Complexity: Seems to be also O(log n)
+ * 
+ * Because, in each iteration is slicing the array in half, then
+ * it takes one or another path (like what's happening when inserting a new Node in ABB)
+ * 
+ * But, even tho both have the same the same time complexity
+ * the recursive version seems to be like 10 times as fast as the other.
+ * 
+ * 
+ * 
+ * 
+*/
 
 int actually_recursive_binary_search(std::vector <int> &vector, int element_to_search, int left, int right) {
     if (left > right) return -1;
