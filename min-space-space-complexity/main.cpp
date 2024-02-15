@@ -34,6 +34,11 @@
  * short: Only ocupies 2 Bytes = 16 Bits
  * unsigned: can only store positive values [0, 65.535]
  * 
+ * * > uint8_t = short unsigned int
+ * 
+ * "shorther" int. Only ocupies 1 Byte, so it can only stores values in
+ * the range (0, 255)
+ *   
  * * > float = float :P
  * 
  * There's no other way (in terms of space) to store decimal numbers efficiently
@@ -79,6 +84,8 @@ float processStudents(T& totalStudents, T& aprovedStudents, T& perfectGradeStude
     for (T i = 0; i < totalStudents; i++) {
         std::cout << std::endl << "ESTUDIANTE " << i + 1 << std::endl;
 
+        // takeInput <T> returns a T value, so, there's no need to store it somewhere in memory
+
         float finalGrade = 
             takeInput<float>("Ingrese la nota del parcial: ") * 0.5f + 
             takeInput<float>("Ingrese la nota de los quices: ") * 0.3f +
@@ -100,6 +107,9 @@ float processStudents(T& totalStudents, T& aprovedStudents, T& perfectGradeStude
         std::cout << "[ DESAPROBADO ] [ " << finalGrade << " ]" << std::endl; 
     }
 
+    // Also here, returning the accumulative value, so, we can take advantaje of it
+    // using the call stack
+
     return accumulative;
 }
 
@@ -115,16 +125,27 @@ int main() {
 
     std::cout << std::endl << "Numero de estudiantes" << std::endl;
 
+    // Constant Memory ussage of the script 
+
     uint8_t aprovedStudents = 0, totalStudents, perfectGradeStudentsCount = 0;
 
     do {
+        // working with uint8_t, why is a uint16_t here?
+
+        // Seems like, converting to uint8_t from the std::cin buffer (const char *)
+        // makes a lot of problems, so ...
+
         uint16_t temp;
         std::cout << "-> ";
         std::cin >> temp;
 
+        // So, here we validate the range of the values that can be stored in uint8_t
+
         if (temp >= 0 && temp <= 255)
             totalStudents = static_cast<uint8_t>(temp);
     } while (totalStudents <= 0);
+
+    // processStudents must execute first in order to call calculateGeneralAverage
 
     calculateGeneralAverage(processStudents(totalStudents, aprovedStudents, perfectGradeStudentsCount), totalStudents);
     std::cout << "Aprobados: " << static_cast<int>(aprovedStudents) << std::endl;
