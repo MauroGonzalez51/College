@@ -46,8 +46,20 @@ class DoubleLinkedList {
         * 
         * @returns {number} - Value of the first element
        */
-
         short shift();
+        
+        /**
+         * Prints the whole list (values)
+         *  
+        */
+        void print();
+
+        /**
+         * Checks if the list is empty or not
+         * 
+         * @returns {boolean} - Will evaluate to true if the list is empty
+        */
+        int isEmpty();
 };
 
 #endif

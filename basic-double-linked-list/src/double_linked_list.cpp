@@ -58,20 +58,58 @@ short DoubleLinkedList::pop() {
     if (!this -> tail)
         throw std::out_of_range("Cannot pop from an empty list");
 
-    Node *node = this -> head;
+    Node *node = this -> tail;
     short value = node -> value;
+    this -> currentSize--;
 
-    this -> tail -> previousElement -> nextElement = nullptr;
-    
+    if (!node -> previousElement) {
+        this -> head = this -> tail = nullptr;
+        
+        delete node;
+
+        return value;
+    }
+
+    node -> previousElement -> nextElement = nullptr;
+    this -> tail = node -> previousElement;
+
     delete node;
+
+    return value;
 }
 
 short DoubleLinkedList::shift() {
     if (!this -> head)
         throw std::out_of_range("Cannot shift from an empty list");
 
-    short value = this -> head -> value;
+    Node *node = this -> head;
+    short value = node -> value;
+    this -> currentSize--;
 
+    if (!node -> nextElement) {
+        this -> head = this -> tail = nullptr;
 
+        delete node;
 
+        return value;
+    }
+
+    node -> nextElement -> previousElement = nullptr;
+    this -> head = node -> nextElement;
+
+    delete node;
+
+    return value;
+}
+
+int DoubleLinkedList::isEmpty() {
+    return this -> head == nullptr;
+}
+
+void DoubleLinkedList::print() {
+    Node *current = this -> head;
+    while (current) {
+        std::cout << current -> value << std::endl;
+        current = current -> nextElement;
+    }
 }
