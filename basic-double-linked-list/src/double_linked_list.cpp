@@ -1,4 +1,4 @@
-#include "../include/classes/double_linked_list.h"
+#include "classes/double_linked_list.h"
 
 DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList *other) {
     if (!other) return;
@@ -109,7 +109,19 @@ int DoubleLinkedList::isEmpty() {
 void DoubleLinkedList::print() {
     Node *current = this -> head;
     while (current) {
-        std::cout << current -> value << std::endl;
+        std::cout << current -> value;
         current = current -> nextElement;
     }
+
+    std::cout << std::endl;
+}
+
+std::ostream &DoubleLinkedList::print(std::ostream &output) {
+    Node *current = this -> head;
+    while (current) {
+        output << current -> value;
+        current = current -> nextElement;
+    }
+
+    return output;
 }

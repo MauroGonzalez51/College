@@ -1,4 +1,4 @@
-#include "../include/classes/binary.h"
+#include "classes/binary.h"
 
 Binary::Binary(long value) {
     for (int i = 0; i < MAX_SIZE_BINARY; i++)

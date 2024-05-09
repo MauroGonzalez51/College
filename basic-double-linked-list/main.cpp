@@ -1,12 +1,17 @@
 #include <iostream>
-#include "include/classes/decimal.h"
-#include "include/classes/binary.h"
-#include "include/classes/double_linked_list.h"
+#include "classes/decimal.h"
+#include "classes/binary.h"
+#include "classes/binary_linked.h"
 
 int main(int argc, char **argv) {
-    DoubleLinkedList *list = new DoubleLinkedList();
-
+    if (argc < 3) return EXIT_FAILURE;
     
+    BinaryLinked *b1 = new BinaryLinked(std::stoi(argv[1]));
+    BinaryLinked *b2 = new BinaryLinked(std::stoi(argv[2]));
+
+    BinaryLinked *result = (*b1) + (*b2);  
+    
+    std::cout << *result << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -2,7 +2,7 @@
 #define DOUBLE_LINKED_LIST_H
 #include <iostream>
 #include <stdexcept>
-#include "../node.h"
+#include "node.h"
 
 class DoubleLinkedList {
     private:
@@ -55,11 +55,21 @@ class DoubleLinkedList {
         void print();
 
         /**
+         * Prints the whole list (values)
+         * 
+         * used for operator overloading
+         * 
+         * @returns {std::ostream} - OutputObject 
+        */
+        std::ostream &print(std::ostream &);
+
+        /**
          * Checks if the list is empty or not
          * 
          * @returns {boolean} - Will evaluate to true if the list is empty
         */
         int isEmpty();
+
 };
 
 #endif

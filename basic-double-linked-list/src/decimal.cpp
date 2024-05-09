@@ -1,4 +1,4 @@
-#include "../include/classes/decimal.h"
+#include "classes/decimal.h"
 
 Decimal::Decimal(long value) {
     for (int i = 0; i < MAX_SIZE_DECIMAL; i++) 
