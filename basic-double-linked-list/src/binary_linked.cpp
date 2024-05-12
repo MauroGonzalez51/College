@@ -1,5 +1,7 @@
 #include "classes/binary_linked.h"
 
+// TODO: Docstring this (the methods that are neccesary)
+
 DoubleLinkedList *BinaryLinked::getList() {
     return this -> list;
 }
@@ -11,6 +13,19 @@ BinaryLinked::BinaryLinked(long value) {
         return;
     }
 
+    /**
+     * Since the this -> list remains the same (in size)
+     * The space complexity sticks at O(1)
+     * 
+     * But ...
+     * The nodes are being added, so the object of list will be
+     * growing in size.
+     * 
+     * This growth is independent of the class constructor itself.
+     * 
+     * Note: list -> unshift() // Time: O(1)
+     *  
+    */
     while (value != 0) {
         this -> list -> unshift(value % 2);
         value /= 2;

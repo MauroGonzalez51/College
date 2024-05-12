@@ -34,7 +34,6 @@ int DoubleLinkedList::push(short newValue) {
     this -> tail -> nextElement = node;
     node -> previousElement = this -> tail;
     this -> tail = node;
-    this -> currentSize++;
     return ++this -> currentSize;
 }
 

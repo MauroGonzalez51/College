@@ -11,6 +11,9 @@
  * @size
  *  - {DoubleLinkedList *}: 8 Bytes
  *  - {DoubleLinkedList}: 24 Bytes
+ *  - Equation:
+ *      f(n) = 24 + 24n
+ *          Since sizeof(Node) = 24 Bytes 
  * 
 */
 class DoubleLinkedList {

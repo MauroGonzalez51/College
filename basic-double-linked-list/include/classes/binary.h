@@ -55,16 +55,12 @@ class Binary {
          * 
          * @complexity
          *  - Space: O(1)
-         *  - Time:
-         *      - Best case: O(1)
-         *          Binary representation of 0
-         *      
-         *      - Worst case: O(MAX_SIZE_BINARY)
-         *          When there's a value stored that's different of 0
+         *  - Time: O(MAX_SIZE_BINARY)
+         *      In any case
          * 
          * @public
          * @param {std::ostream &} output - The output stream
-         * @param {const Binary &} binary - The binary object to be printed
+         * @param {const Binary &} binary - The Binary object to be printed
          * @returns {std::ostream &} - The output stream
         */
         friend std::ostream &operator<<(std::ostream &, const Binary &);
