@@ -4,6 +4,15 @@
 #include <stdexcept>
 #include "node.h"
 
+/**
+ * Double linked list data structure.
+ * Designed to store short values
+ * 
+ * @size
+ *  - {DoubleLinkedList *}: 8 Bytes
+ *  - {DoubleLinkedList}: 24 Bytes
+ * 
+*/
 class DoubleLinkedList {
     private:
         Node *head, *tail;
@@ -11,7 +20,7 @@ class DoubleLinkedList {
 
     public:
         /**
-         * Default constructor for DoubleLinkedList.
+         * Default constructor for DoubleLinkedList class.
          * Initializes an empty list.
          * 
          * @complexity
@@ -23,7 +32,7 @@ class DoubleLinkedList {
         DoubleLinkedList(): head(nullptr), tail(nullptr), currentSize(0) {}
 
         /**
-         * Copy constructor for DoubleLinkedList.
+         * Copy constructor for DoubleLinkedList class.
          * 
          * @complexity
          *  - Space: O(1)

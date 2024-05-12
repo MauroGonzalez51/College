@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
 
-    std::cout << sizeof(int) << std::endl;
+    std::cout << sizeof(BinaryLinked) << std::endl;
 
     BinaryLinked *b1 = new BinaryLinked(std::stoi(argv[1]));
     BinaryLinked *b2 = new BinaryLinked(std::stoi(argv[2]));
