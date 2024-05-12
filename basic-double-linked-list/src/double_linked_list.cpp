@@ -3,7 +3,7 @@
 DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList *other) {
     if (!other) return;
 
-    if (!other -> currentSize) return;
+    if (other -> isEmpty()) return;
 
     Node *current = this -> head;
     while (current) {
@@ -102,7 +102,7 @@ short DoubleLinkedList::shift() {
     return value;
 }
 
-int DoubleLinkedList::isEmpty() {
+int DoubleLinkedList::isEmpty() const {
     return this -> head == nullptr;
 }
 
