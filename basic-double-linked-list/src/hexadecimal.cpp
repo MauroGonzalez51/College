@@ -25,26 +25,26 @@ Hexadecimal::Hexadecimal(long value) {
 }
 
 Hexadecimal *Hexadecimal::operator+(const Hexadecimal &other) const {
-    Hexadecimal result;
+    Hexadecimal *result = new Hexadecimal();
     int carry = 0;
     int sum;
 
     for (int i = MAX_SIZE_HEXADECIMAL - 1; i >= 0; i--) {
         sum = (this -> hexadecimal[i] - '0') + (other.hexadecimal[i] - '0') + carry;
 
-        result.hexadecimal[i] = sum % 16;
+        result -> hexadecimal[i] = sum % 16;
 
-        if (result.hexadecimal[i] < 10) {
-            result.hexadecimal[i] += '0';
+        if (result -> hexadecimal[i] < 10) {
+            result -> hexadecimal[i] += '0';
             carry = sum / 16;
             continue;
         } 
         
-        result.hexadecimal[i] += 'A' - 10;
+        result -> hexadecimal[i] += 'A' - 10;
         carry = sum / 16;
     }
 
-    return &result;
+    return result;
 }
 
 std::ostream &operator<<(std::ostream &output, const Hexadecimal &hexadecimal) {
