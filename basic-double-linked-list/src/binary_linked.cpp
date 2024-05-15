@@ -10,6 +10,7 @@ BinaryLinked::BinaryLinked(long value) {
     this -> list = new DoubleLinkedList();
 
     if (value == 0) {
+        this -> list -> unshift(0);
         return;
     }
 
