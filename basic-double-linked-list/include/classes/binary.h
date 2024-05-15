@@ -25,7 +25,7 @@ class Binary {
          *
          * @complexity
          *  - Space: O(1)
-         *  - Time: O(k)
+         *  - Time: O(MAX_SIZE_BINARY + k)
          *      k being the number of bits required to represent the {long} value
          *      k = static_cast<int>(log2(value)) + 1
          * 

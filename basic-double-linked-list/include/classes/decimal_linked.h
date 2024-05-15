@@ -1,16 +1,26 @@
-#ifndef DECIMAL_LINKED_H
-#define DECIMAL_LINKED_H
+#ifndef LISTADECIMAL_H
+#define LISTADECIMAL_H
+
 #include <iostream>
-#include "classes/double_linked_list.h"
+using namespace std;
 
-class DecimalLinked {
-    private:
-        DoubleLinkedList *list;
-
-    public:
-        DecimalLinked(long = 0);
-        DecimalLinked operator+(const DecimalLinked &) const;
-        friend std::ostream &operator<<(std::ostream &, const DecimalLinked &);
+class listadecimal
+{
+public:
+    friend ostream &operator<<(ostream &, const listadecimal &);
+public:
+    listadecimal(long = 0);
+    listadecimal operator+(const listadecimal &) const;
+private:
+    struct Nodo {
+        short digito;
+        Nodo *siguiente;
+        Nodo *anterior;
+        Nodo(short digito = 0, Nodo *siguiente = nullptr, Nodo *anterior = nullptr)
+            : digito(digito), siguiente(siguiente), anterior(anterior) {}
+    };
+    Nodo *ultimo;
+    Nodo *primero;
 };
 
-#endif
+#endif // LISTADECIMAL_H
